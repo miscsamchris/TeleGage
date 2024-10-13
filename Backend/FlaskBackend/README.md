@@ -52,7 +52,6 @@ TeleGage Web Application is a Flask-based backend service that integrates with T
    Update the following variables in the `__init__.py` file:
    ```python:TegeGageApplication/TeleGage/__init__.py
    startLine: 63
-   endLine: 65
    ```
 
 ## Running the Application
@@ -64,18 +63,22 @@ python app.py
 
 1. Create Telegram Channel:
    ```python:TegeGageApplication/app.py
+   startLine: 30
    ```
 
 2. Get Community Statistics:
    ```python:TegeGageApplication/app.py
+   startLine: 238
    ```
 
 3. Get Community Topics:
    ```python:TegeGageApplication/app.py
+   startLine: 256
    ```
 
 4. Import Existing Channel:
    ```python:TegeGageApplication/app.py
+   startLine: 340
    ```
 
 ## How It Works
