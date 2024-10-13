@@ -1,10 +1,8 @@
 "use client"
 import React, { useEffect, useRef, useCallback } from 'react'
 import { motion, useMotionTemplate, useMotionValue } from 'framer-motion';
-
-import EcosystemIcon from "../assets/icons/ecosystem.svg";
-
-export const Feature = ({ title, description }: { title: string, description: string }) => {
+    
+export const Feature = ({ title, description, icon }: { title: string, description: string, icon: React.ReactNode }) => {
     const offsetX = useMotionValue(-100)
     const offsetY = useMotionValue(-100)
     const maskImage = useMotionTemplate`radial-gradient(120px 120px at ${offsetX}px ${offsetY}px, black, transparent)`
@@ -36,8 +34,8 @@ export const Feature = ({ title, description }: { title: string, description: st
                 ref={border}
             >
             </motion.div>
-            <div className="inline-flex h-14 w-14 bg-white text-black justify-center items-center rounded-lg">
-                <EcosystemIcon />
+            <div className="inline-flex h-14 w-14 text-black justify-center items-center ">
+                {icon}
             </div>
             <h3 className="mt-6 font-bold">{title}</h3>
             <p className="mt-2 text-white/70">{description}</p>

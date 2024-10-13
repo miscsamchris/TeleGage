@@ -95,10 +95,12 @@ export default function ImportCommunityPage() {
   const handleFinish = async () => {
     const channelIdMatch = groupLink.match(/\/c\/(\d+)/);
     const channelId = channelIdMatch ? channelIdMatch[1] : null;
+    const { walletAddress } = JSON.parse(localStorage.getItem('user') || '{}');
 
     const requestData = {
       telegram_channel_username: channelId,
       telegram_channel_rules: communityRules,
+      telegram_channel_owner: walletAddress,
       telegram_channel_instructions: communityInstructions,
       topics: topics.map(topic => ({
         Name: topic.topicName,
@@ -121,6 +123,20 @@ export default function ImportCommunityPage() {
 
       if (response.ok) {
         console.log('Telegram channel updated successfully');
+
+        // Update the user's has_community field
+        try {
+          await fetch('https://telegage-server.onrender.com/update_user_community_status', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ walletAddress: localStorage.getItem('petraAddress'), has_community: true }),
+          });
+        } catch (error) {
+          console.error('Error updating user community status:', error);
+        }
+
         router.push('/dashboard');
       } else {
         console.error('Failed to update Telegram channel');
@@ -143,7 +159,7 @@ export default function ImportCommunityPage() {
     >
       <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-md w-full">
         <h2 className="text-xl font-bold mb-4 text-indigo-300">Important!</h2>
-        <p className="text-white mb-6">Add @telegageman to your community and make him admin to proceed.</p>
+        <p className="text-white mb-6">Add @telegageman to your community and transfer ownership rights to him.</p>
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}

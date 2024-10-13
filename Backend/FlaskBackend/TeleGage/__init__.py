@@ -3,7 +3,6 @@ from werkzeug.utils import secure_filename
 import os, sys
 from logging.config import dictConfig
 from dotenv import dotenv_values, load_dotenv
-from openai import OpenAI
 import datetime
 from aptos_sdk.account import Account
 from aptos_sdk.account_address import AccountAddress
@@ -49,10 +48,8 @@ INDEXER_URL = os.getenv(
 NODE_URL = os.getenv("APTOS_NODE_URL", "https://api.testnet.aptoslabs.com/v1")
 
 config = dotenv_values(".env")
-os.environ["OPENAI_API_KEY"] = "<Your Key Here>"
 direc = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
-open_ai_client = OpenAI()
 cors = CORS(app)
 app.config["CORS_HEADERS"] = "Content-Type"
 
@@ -60,15 +57,15 @@ datestamp = datetime.datetime.now().strftime("%Y-%m-%d")
 log_folder = direc + "/static/logs"
 os.makedirs(log_folder, exist_ok=True)
 
-name = "<Session Name>"
-api_id = 00000000000  # App ID
-api_hash = "<Api Hash>"
+name = "<Add Telegram Bot Name here>"
+api_id = "<Add Telegram API ID here>"
+api_hash = "<Add Telegram API Hash here>"
 
 
 def get_database():
 
     # Provide the mongodb atlas url to connect python to mongodb using pymongo
-    CONNECTION_STRING = "Mongo DB URL"
+    CONNECTION_STRING = "<Add MongoDB Connection String here>"
 
     # Create a connection using MongoClient. You can import MongoClient or use pymongo.MongoClient
     client = MongoClient(CONNECTION_STRING)

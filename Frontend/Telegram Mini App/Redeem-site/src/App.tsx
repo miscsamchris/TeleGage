@@ -6,9 +6,14 @@ import { Dashboard } from "./components/Dashboard";
 
 
 import "@aptos-labs/wallet-adapter-ant-design/dist/index.css";
+import { useAutoConnect } from "./components/AutoConnectProvider";
 
 const App: React.FC = () => {
   const { connected } = useWallet();
+  const { autoConnect, setAutoConnect } = useAutoConnect();
+
+  setAutoConnect(true);
+  console.log(autoConnect);
 
   return (
     <Router>
@@ -17,7 +22,7 @@ const App: React.FC = () => {
           <Route path="/" element={connected ? <Navigate to="/dashboard" /> : <WalletConnector />} />
           <Route path="/dashboard" element={connected ? <Dashboard /> : <Navigate to="/" />} />
           <Route 
-            path="/user/:userId" 
+            path="/user/:userId/:communityId" 
             element={
               connected ? <Dashboard /> : <WalletConnector />
             } 

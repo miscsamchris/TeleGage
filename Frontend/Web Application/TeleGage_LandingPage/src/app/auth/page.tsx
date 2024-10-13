@@ -3,7 +3,7 @@ import { useState } from "react";
 import { AuthForm } from "@/components/AuthForm";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import logoImg from "@/assets/images/logosaas.png";
+import logoImg from "@/assets/images/Telegage_logo.png";
 
 export default function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);
