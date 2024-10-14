@@ -54,7 +54,7 @@ Each component of the project has its own setup instructions. Please refer to th
 
 ## Support
 
-If you encounter any issues or have questions, please file an issue on the GitHub repository or contact our support team at support@telegage.com.
+If you encounter any issues or have questions, please file an issue on the GitHub repository or contact infantsamchris@gmail.com .
 
 ## Acknowledgements
 
